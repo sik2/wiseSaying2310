@@ -1,11 +1,11 @@
-package org.example;
+package org.example.wiseSaying.entity;
 
 public class WiseSaying {
     private long id;
     private String author;
     private String content;
 
-    WiseSaying(Long id, String author, String content) {
+    public WiseSaying(Long id, String author, String content) {
         this.id = id;
         this.author = author;
         this.content = content;

@@ -5,18 +5,13 @@ import org.example.wiseSaying.controller.WiseSayingController;
 import java.util.Scanner;
 
 public class App {
-    private final Scanner sc;
-
-    public App(Scanner sc) {
-        this.sc = sc;
-    }
     public void run() {
         SystemController systemController = new SystemController();
-        WiseSayingController wiseSayingController = new WiseSayingController(sc);
+        WiseSayingController wiseSayingController = new WiseSayingController();
         System.out.println("== 명언 앱 ==");
         while (true) {
             System.out.print("명령) ");
-            String command = sc.nextLine().trim();
+            String command = Container.getScanner().nextLine().trim();
             if (command.equals("종료")) {
                 systemController.exit();
                 break;

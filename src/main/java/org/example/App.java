@@ -23,25 +23,10 @@ public class App {
             } else if (command.equals("목록")) {
                 wiseSayingController.list();
             } else if (command.startsWith("삭제")) {
-                //삭제?id=1
-                String[] commandBits = command.split("\\?", 2);
-                //["삭제", "id=1"]
-                String actionCode = commandBits[0];
-                //["id=1", "id=2"]
-                String[] paramsBits = commandBits[1].split("&");
-                //id=1
-                Map<String, String> params = new HashMap<>();
-                for (String paramStr : paramsBits) {
-                    //[id, 1]
-                    String[] paramStrBits = paramStr.split("=",2);
-                    String key = paramStrBits[0];
-                    String value = paramStrBits[1];
 
-                    params.put(key, value);
-                }
-
-                System.out.println("actionCode : " + actionCode);
-                System.out.println("params : " + params);
+                Request request = new Request(command);
+                System.out.println(request.getActionCode());
+                System.out.println(request.getParam("id"));
 
                 wiseSayingController.remove();
             }

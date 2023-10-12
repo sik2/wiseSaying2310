@@ -10,6 +10,9 @@ public class Request {
     public Request(String command) {
         String[] commandBits = command.split("\\?", 2);
         actionCode = commandBits[0];
+
+        if (commandBits.length == 1) return;
+
         String[] paramsBits = commandBits[1].split("&");
 
         for (String paramStr : paramsBits) {
@@ -18,9 +21,6 @@ public class Request {
             String value = paramStrBits[1];
             params.put(key, value);
         }
-
-        System.out.println("actionCode : " + actionCode);
-        System.out.println("params : " + params);
     }
 
     public String getActionCode() {

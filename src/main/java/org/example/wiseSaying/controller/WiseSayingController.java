@@ -38,6 +38,11 @@ public class WiseSayingController {
     public void remove(Request request) {
         int id = request.getIntParam("id", -1);
 
+        if (id == -1) {
+            System.out.println("id(정수) 값을 입력해주세요.");
+            return;
+        }
+
         WiseSaying wiseSaying = findById(id);
 
         if (wiseSaying == null) {
@@ -52,6 +57,11 @@ public class WiseSayingController {
 
     public void modify(Request request) {
         int id = request.getIntParam("id", -1);
+
+        if (id == -1) {
+            System.out.println("id(정수) 값을 입력해주세요.");
+            return;
+        }
 
         WiseSaying wiseSaying = findById(id);
 

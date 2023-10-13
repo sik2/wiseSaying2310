@@ -36,13 +36,7 @@ public class WiseSayingController {
     }
 
     public void remove(Request request) {
-        int id = -1;
-        try {
-            id = Integer.parseInt(request.getParam("id"));
-        } catch (NumberFormatException e) {
-            System.out.println("id 정수 값을 입력하세요.");
-            return;
-        }
+        int id = request.getIntParam("id", -1);
 
         System.out.println(id +"번 명언이 삭제 되었습니다.");
     }

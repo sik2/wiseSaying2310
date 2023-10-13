@@ -40,6 +40,11 @@ public class WiseSayingController {
 
         WiseSaying wiseSaying = findById(id);
 
+        if (wiseSaying == null) {
+            System.out.println(id + "번 명언은 존재하지 않습니다.");
+            return;
+        }
+
         wiseSayings.remove(wiseSaying);
 
         System.out.println(id + "번 명언이 삭제되었습니다.");

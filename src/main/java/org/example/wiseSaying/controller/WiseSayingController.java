@@ -38,11 +38,19 @@ public class WiseSayingController {
     public void remove(Request request) {
         int id = request.getIntParam("id", -1);
 
+        WiseSaying wiseSaying = findById(id);
+
+        wiseSayings.remove(wiseSaying);
+
+        System.out.println(id + "번 명언이 삭제되었습니다.");
+    }
+
+    public WiseSaying findById (int id) {
         for (WiseSaying wiseSaying : wiseSayings) {
             if (wiseSaying.getId() == id ) {
-                wiseSayings.remove(wiseSaying);
-                System.out.println(id +"번 명언이 삭제되었습니다.");
+               return wiseSaying;
             }
         }
+        return null;
     }
 }

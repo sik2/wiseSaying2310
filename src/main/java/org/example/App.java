@@ -15,6 +15,8 @@ public class App {
         while (true) {
             System.out.print("명령) ");
             String command = Container.getScanner().nextLine().trim();
+
+            // 삭제?id=1
             Request request = new Request(command);
 
             switch (request.getActionCode()) {
@@ -28,7 +30,7 @@ public class App {
                     wiseSayingController.list();
                     break;
                 case "삭제":
-                    wiseSayingController.remove();
+                    wiseSayingController.remove(request);
                     break;
             }
         }

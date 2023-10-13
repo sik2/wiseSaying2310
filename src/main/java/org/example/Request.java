@@ -17,6 +17,9 @@ public class Request {
 
         for (String paramStr : paramsBits) {
             String[] paramStrBits = paramStr.split("=",2);
+            if (paramStrBits.length == 1) {
+                continue;
+            }
             String key = paramStrBits[0];
             String value = paramStrBits[1];
             params.put(key, value);

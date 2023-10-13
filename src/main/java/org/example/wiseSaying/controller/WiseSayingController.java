@@ -50,10 +50,34 @@ public class WiseSayingController {
         System.out.println(id + "번 명언이 삭제되었습니다.");
     }
 
-    public WiseSaying findById (int id) {
+    public void modify(Request request) {
+        int id = request.getIntParam("id", -1);
+
+        WiseSaying wiseSaying = findById(id);
+
+        if (wiseSaying == null) {
+            System.out.println(id + "번 명언은 존재하지 않습니다.");
+            return;
+        }
+
+        System.out.printf("기존명언 : %s\n", wiseSaying.getContent());
+        System.out.printf("명언 :");
+        String content = Container.getScanner().nextLine().trim();
+
+        System.out.printf("기존작가 : %s\n", wiseSaying.getAuthor());
+        System.out.printf("작가 :");
+        String author = Container.getScanner().nextLine().trim();
+
+        wiseSaying.setAuthor(author);
+        wiseSaying.setContent(content);
+
+        System.out.println(id + "번 명언이 수정 되었습니다.");
+    }
+
+    private WiseSaying findById (int id) {
         for (WiseSaying wiseSaying : wiseSayings) {
             if (wiseSaying.getId() == id ) {
-               return wiseSaying;
+                return wiseSaying;
             }
         }
         return null;

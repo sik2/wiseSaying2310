@@ -1,42 +1,38 @@
 package org.example.wiseSaying.service;
 
 import org.example.wiseSaying.entity.WiseSaying;
+import org.example.wiseSaying.repository.WiseSayingRepository;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WiseSayingService {
-    long lastWiseSayingId = 0;
-    List<WiseSaying> wiseSayings = new ArrayList<>();
 
+    private final WiseSayingRepository wiseSayingRepository;
+
+    public WiseSayingService() {
+        wiseSayingRepository = new WiseSayingRepository();
+    }
 
     public long write (String content, String author) {
-        long id = lastWiseSayingId + 1;
-
-        WiseSaying wiseSaying = new WiseSaying(id, author, content);
-        wiseSayings.add(wiseSaying);
-        lastWiseSayingId = id;
-
+        long id = wiseSayingRepository.write(content, author);
         return id;
     }
+
     public void remove (WiseSaying wiseSaying) {
-        wiseSayings.remove(wiseSaying);
+        wiseSayingRepository.remove(wiseSaying);
     }
+
     public void modify (WiseSaying wiseSaying, String author, String content) {
-        wiseSaying.setAuthor(author);
-        wiseSaying.setContent(content);
+        wiseSayingRepository.modify(wiseSaying, author, content);
     }
 
     public WiseSaying findById (int id) {
-        for (WiseSaying wiseSaying : wiseSayings) {
-            if (wiseSaying.getId() == id ) {
-                return wiseSaying;
-            }
-        }
-        return null;
+        return wiseSayingRepository.findById(id);
     }
 
     public List<WiseSaying> findByAll() {
+        List<WiseSaying> wiseSayings = wiseSayingRepository.findByAll();
         return wiseSayings;
     }
 }
